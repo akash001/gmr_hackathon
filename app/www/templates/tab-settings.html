@@ -1,0 +1,39 @@
+<ion-view view-title="Settings">
+  <ion-content>
+    <div class="list">
+    	<ion-toggle  ng-model="settings.notifications" class="item item-icon-left">
+        	<i class="icon ion-paper-airplane"></i>Enable Notifications
+    	</ion-toggle>
+    	
+    	<a class="item item-icon-left" href="#">
+	    	<i class="icon ion-ios-color-wand"></i>
+	    	Max. Locations Checks
+	    	<span class="badge"><select ng-model="settings.num_locations" class="right">
+	            <option ng-selected="selected">5</option>
+	            <option>10</option>
+	            <option>15</option>
+	            <option>20</option>
+	        </select>
+	        </span>
+        </a>
+
+	  <a class="item item-icon-left" href="#">
+    	<i class="icon ion-ios-color-wand"></i>
+    		WoW Points
+    	<span class="badge badge-assertive">{{settings.wow_points}}</span>
+  	  </a>
+  	  
+  	  
+  	  <a class="item item-icon-left" href="#">
+    	<i class="icon ion-help-circled"></i>
+    		Help
+  	  </a>
+  	  
+  	  
+  	  <a class="item item-icon-left" href="#" ng-click="logoff()">
+    	<i class="icon ion-log-out"></i>
+    		Log Off
+  	  </a>
+	</div>
+  </ion-content>
+</ion-view>

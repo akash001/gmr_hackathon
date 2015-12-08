@@ -1,0 +1,29 @@
+<ion-view view-title="Accounts">
+  <ion-content class="padding">
+  <ion-list>
+  <ion-item class="list card" ng-repeat="account in accounts" type="item-text-wrap">
+      <div class="item item-divider">{{account.card_brand}} : {{account.card_number | mask_ac_number}}</div>
+      <div class="item item-body">
+        <div>
+          <b>Name:</b>  {{account.account_holder_name}}
+        </div>
+        <div>
+          <b>Expires:</b>  {{account.card_expiry}}
+        </div>
+        <span>
+        <button class="button button-clear button-positive">
+  				Edit
+		</button>
+		<button class="button button-clear button-positive">
+  				Delete
+		</button>
+        </span>
+        </div>
+     </ion-item>
+     </ion-list>
+     <button class="button button-small button-assertive">
+  		Add New Account
+	</button>
+  </ion-content>
+  
+</ion-view>

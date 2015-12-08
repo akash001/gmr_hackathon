@@ -1,0 +1,25 @@
+<ion-view view-title="Locations">
+  <ion-content>
+  <ion-refresher
+    pulling-text="Pull to refresh..."
+    	on-refresh="doRefresh()">
+  </ion-refresher>
+    <ion-list>
+      <ion-item class="item-icon-right" ng-repeat="l in locations" type="item-text-wrap" href="#/tab/locations/{{l.id}}">
+        <div class="row">
+        	<div class="col col-10"><span class="txn_date">{{l.txn_date}}</span></div>
+        	<div class="col col-60"><span class="txn_name">{{l.name}}</span></div>
+			<div class="col col-10"><span class="txn_curr">{{l.amount | currency}}</span></div>
+        </div>
+        <div class="row">
+        	<div class="col><span class="txn_merchant">
+        	  <b>GMR Location:</b> 
+        	   <span class="txn_merch_name">{{l.location.merchant_name}}</span>
+        	   <span class="txn_merch_address">{{l.location.street}}, {{l.location.city}}, 
+        	   				{{l.location.state}}. {{l.location.zip}}.</span></div>
+        </div>
+        <p class="icon ion-edit icon-accessory"/>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

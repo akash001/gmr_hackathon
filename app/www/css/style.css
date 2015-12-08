@@ -1,0 +1,33 @@
+/* Empty. Add your own CSS if you like */
+.txn_name {
+	font-size:1em;
+	word-wrap: break-word;
+	color: #010100;
+}
+
+.txn_date {
+	font-weight:bold;
+	color:blue;
+	font-size:small;
+}
+.txn_curr {
+	font-family:Arial;
+	font-size:0.8em;
+	
+}
+
+.txn_merch_name{
+	color:red;
+}
+
+.txn_merchant{
+	font:Verdana;
+}
+.scroll {
+    height: 100%;
+}
+ 
+#map {
+    width: 100%;
+    height: 50%;
+}
