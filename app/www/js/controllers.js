@@ -1,5 +1,38 @@
 angular.module('starter.controllers', ['ionic','starter.services','starter.filters'])
 
+.controller('LoginCtrl', function($scope, LoginService, $http, $ionicPopup, $state) {
+    $scope.data = {};
+
+    $http.get('https://cors-test.appspot.com/test').then(function(resp) {
+    console.log('Success 123', resp);
+    // For JSON responses, resp.data contains the result
+    }, function(err) {
+      console.error('ERR', err);
+      // err.status will contain the status code
+    })
+ 
+    $scope.login = function() {
+        LoginService.loginUser($scope.data.username, $scope.data.password).success(function(data) {
+            $state.go('tab.locations');
+        }).error(function(data) {
+            var alertPopup = $ionicPopup.alert({
+                title: 'Login failed!',
+                template: 'Please check your credentials!'
+            });
+        });
+    }
+})
+
+.controller('StartCtrl', function($scope, LoginService, $http, $ionicPopup, $state) {
+    $scope.signin = function() {
+        $state.go('login');
+    }
+
+    $scope.register = function() {
+        $state.go('login');
+    }
+})
+
 .controller('LocationDetailCtrl',function($scope,$stateParams,$ionicLoading,$compile,Locations){
 	$scope.location  = Locations.get($stateParams.id);
 	

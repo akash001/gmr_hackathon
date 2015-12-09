@@ -27,6 +27,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   $stateProvider
 
+  .state('startpage', {
+      url: '/startpage',
+      templateUrl: 'templates/startpage.html',
+      controller: 'StartCtrl'
+  })
+
+  .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
+  })
+
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
@@ -77,6 +89,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/locations');
+  //$urlRouterProvider.otherwise('/tab/locations');
+  $urlRouterProvider.otherwise('/startpage');
 
 });
