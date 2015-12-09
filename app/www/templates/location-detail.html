@@ -4,7 +4,17 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="Location Correction: {{location.name}}">
+<ion-view>
+
+
+<ion-nav-bar class="bar bar-header bar-positive">
+<ion-nav-back-button>
+</ion-nav-back-button>
+<ion-nav-title>
+  <h1 class="title"><b>Location Correction: {{location.name}}</b></h1>
+</ion-nav-title>
+</ion-nav-bar>
+
 <ion-content> <br />
 <div id="map" data-tap-disabled="true"></div>
 			<div class="card">
