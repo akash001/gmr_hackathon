@@ -1,30 +1,30 @@
 angular.module('starter.services', [])
 
-.service('LoginService', function($q) {
-    return {
-        loginUser: function(name, pw) {
-            var deferred = $q.defer();
-            var promise = deferred.promise;
- 
-            if (name == 'user' && pw == 'secret') {
-                deferred.resolve('Welcome ' + name + '!');
-            } else {
-                deferred.reject('Wrong credentials.');
-            }
-            promise.success = function(fn) {
-                promise.then(fn);
-                return promise;
-            }
-            promise.error = function(fn) {
-                promise.then(null, fn);
-                return promise;
-            }
-            return promise;
-        }
-    }
-})
+//.service('LoginService', function($q) {
+//    return {
+//        loginUser: function(name, pw) {
+//            var deferred = $q.defer();
+//            var promise = deferred.promise;
+// 
+//            if (name == 'user' && pw == 'secret') {
+//                deferred.resolve('Welcome ' + name + '!');
+//            } else {
+//                deferred.reject('Wrong credentials.');
+//            }
+//            promise.success = function(fn) {
+//                promise.then(fn);
+//                return promise;
+//            }
+//            promise.error = function(fn) {
+//                promise.then(null, fn);
+//                return promise;
+//            }
+//            return promise;
+//        }
+//    }
+//})
 
-.factory('Locations', function(Accounts) {
+.factory('Locations', function($http,Accounts) {
 	// Might use a resource here that returns a JSON array
 
 	// Some fake testing data
@@ -120,20 +120,56 @@ angular.module('starter.services', [])
 
 })
 
-.factory('User', function() {
-	var user = {
-		id : 1,
-		first_name : 'Abhijith',
-		last_name : 'Kashyap',
-		password: 'test',
-		settings : {
-			notifications : true,
-			wow_points : 538,
-			num_locations:10,
+.factory('UserAuth', function(User) {
+	var users = [
+	     {
+			id : 1,
+			first_name : 'Abhijith',
+			email:'abkashya@visa.com',
+			last_name : 'Kashyap',
+			password: 'test',
+			settings : {
+				notifications : true,
+				wow_points : 538,
+				num_locations:10,
+			}
+	     },
+	     {
+				id : 2,
+				first_name : 'Ankur',
+				last_name : 'Raina',
+				email:'araina@visa.com',
+				password: 'test',
+				settings : {
+					notifications : true,
+					wow_points : 538,
+					num_locations:10,
+				}
+			}
+	];
+	
+	return {
+		authenticate : function(e,p){
+			for (var i=0;i<users.length;i++){
+				u = users[i];
+				if (u['email'] == e){
+					User.set_user(u);
+					return u;
+				}
+			}
+			return null;
 		}
 	};
+	
+})
+.factory('User', function() {
+	var user = null;
 
 	return {
+		set_user: function(u){
+			user = u;
+		},
+		
 		is_authenticated : function(){
 			return user != null;
 		},
@@ -152,6 +188,10 @@ angular.module('starter.services', [])
 			}
 			return 'anonymous';
 		},
+		increment_wow(num){
+			user.settings.wow_points += num;
+		},
+		
 		logoff : function(){
 			console.log('Logging off');
 		}

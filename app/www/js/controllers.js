@@ -1,29 +1,31 @@
 angular.module('starter.controllers', ['ionic','starter.services','starter.filters'])
 
-.controller('LoginCtrl', function($scope, LoginService, $http, $ionicPopup, $state) {
+.controller('LoginCtrl', function($scope, $ionicPopup, $state,UserAuth) {
     $scope.data = {};
 
-    $http.get('https://cors-test.appspot.com/test').then(function(resp) {
-    console.log('Success 123', resp);
-    // For JSON responses, resp.data contains the result
-    }, function(err) {
-      console.error('ERR', err);
-      // err.status will contain the status code
-    })
+//    $http.get('https://cors-test.appspot.com/test').then(function(resp) {
+//    console.log('Success 123', resp);
+//    // For JSON responses, resp.data contains the result
+//    }, function(err) {
+//      console.error('ERR', err);
+//      // err.status will contain the status code
+//    })
  
     $scope.login = function() {
-        LoginService.loginUser($scope.data.username, $scope.data.password).success(function(data) {
+    	var u = UserAuth.authenticate($scope.data.username, $scope.data.password);
+       if (u != null) {
             $state.go('tab.locations');
-        }).error(function(data) {
+        }
+       else {
             var alertPopup = $ionicPopup.alert({
                 title: 'Login failed!',
                 template: 'Please check your credentials!'
             });
-        });
-    }
+       }
+    };
 })
 
-.controller('StartCtrl', function($scope, LoginService, $http, $ionicPopup, $state) {
+.controller('StartCtrl', function($scope, $state) {
     $scope.signin = function() {
         $state.go('login');
     }
@@ -103,7 +105,7 @@ angular.module('starter.controllers', ['ionic','starter.services','starter.filte
   $scope.locations = Locations.all();
   $scope.listCanSwipe = true;
   
-  $scope.edit_loc=function(){
+  $scope.edit_loc=function(id){
 	  $state.go('tab.location-detail');
 	  
   }
