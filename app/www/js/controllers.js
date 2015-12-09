@@ -58,7 +58,7 @@ angular.module('starter.controllers', ['ionic','starter.services','starter.filte
 	        $scope.map = map;
 })
 
-.controller('LocationsCtrl', function($scope, Locations) {
+.controller('LocationsCtrl', function($scope, Locations, $state) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -66,8 +66,14 @@ angular.module('starter.controllers', ['ionic','starter.services','starter.filte
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-
+  
   $scope.locations = Locations.all();
+  $scope.listCanSwipe = true;
+  
+  $scope.edit_loc=function(){
+	  $state.go('tab.location-detail');
+	  
+  }
   
   
 //  $scope.remove = function(chat) {
@@ -91,6 +97,12 @@ angular.module('starter.controllers', ['ionic','starter.services','starter.filte
   };
   
   
+})
+
+.controller('MyCtrl', function($scope) {
+ $scope.shouldShowDelete = false;
+ $scope.shouldShowReorder = false;
+ $scope.listCanSwipe = true;
 })
 
 .controller('SettingsCtrl', function($scope,$stateParams,User) {
