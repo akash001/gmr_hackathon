@@ -2,6 +2,17 @@
 <body class="login">
   <ion-view view-title="VISA Merchant Program" name="login-view" >
     <ion-content class="padding">
+    <ion-slide-box on-slide-changed="slideHasChanged($index)">
+  <ion-slide>
+    <div class="box blue"><h1>BLUE</h1></div>
+  </ion-slide>
+  <ion-slide>
+    <div class="box yellow"><h1>YELLOW</h1></div>
+  </ion-slide>
+  <ion-slide>
+    <div class="box pink"><h1>PINK</h1></div>
+  </ion-slide>
+</ion-slide-box>
        <div class="list list-inset">     
           <div class="leftdiv">
             <button class="button button-block button-calm" ng-click="signin()">Sign In</button>

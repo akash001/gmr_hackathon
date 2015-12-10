@@ -45,6 +45,10 @@ angular.module('starter.controllers',
 	$scope.register = function() {
 		$state.go('login');
 	}
+	
+	$scope.slideHasChanged = function(index) {
+		
+	}
 })
 
 .controller(
