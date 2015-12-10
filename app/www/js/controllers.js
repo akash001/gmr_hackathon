@@ -1,5 +1,12 @@
 angular.module('starter.controllers', ['ionic','starter.services','starter.filters'])
 
+/**
+ *  {"tranId":10001,"accountId":1,"locnId":1001,"mrchName":"HomeDepot",
+ *  "tranDt":"2015-11-10","tranAmt":100.15,"mrchAddr":"4903 GreatAmerica Mall Dr",
+ *  "mrchCity":"Milpitas","mrchState":"CA","mrchZip":"95035","mrchCtry":"US",
+ *  "mrchLat":37.3669749,"mrchLong":-121.903354}
+ */
+
 .controller('LoginCtrl', function($scope, $ionicPopup, $state,UserAuth) {
     $scope.data = {};
 
@@ -101,8 +108,11 @@ angular.module('starter.controllers', ['ionic','starter.services','starter.filte
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+
   
-  $scope.locations = Locations.all();
+  Locations.all().then(function(locations){
+	  $scope.locations = locations;
+  });
   $scope.listCanSwipe = true;
   
   $scope.edit_loc=function(id){

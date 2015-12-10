@@ -20,7 +20,7 @@ angular.module('starter.services', [])
 		},
 		get : function(id) {
 			for (var i = 0; i < locations.length; i++) {
-				if (locations[i].id === parseInt(id)) {
+				if (locations[i].tranId === parseInt(id)) {
 					return locations[i];
 				}
 			}
