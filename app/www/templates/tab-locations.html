@@ -17,7 +17,6 @@
     pulling-text="Pull to refresh..."
     	on-refresh="doRefresh()">
   </ion-refresher>
-  <!-- 
     <ion-list ng-controller="LocationsCtrl">
       <ion-item class="item-icon-right" ng-repeat="l in locations" type="item-text-wrap" href="#/tab/locations/{{l.id}}">
   <div class="card">
@@ -26,7 +25,7 @@
       Edit
     </ion-option-button>
   <div class="row">
-        	<div class="col col-20"><span class="txn_date">Transaction Date: {{l.txn_date}}</span></div>
+        	<div class="col col-20"><span class="txn_date">Transaction Date: {{l.mrchName }}</span></div>
         	<div class="col col-30"><span class="txn_name">Merchant Name: {{l.name}}</span></div>
 			<div class="col col-10"><span class="txn_curr">Amount: {{l.amount | currency}}</span></div>
         </div>
@@ -42,8 +41,7 @@
    </div>
       </ion-item>
     </ion-list>
- -->   
-    
+<!--     
  <ion-list ng-controller="LocationsCtrl"
           show-delete="shouldShowDelete"
           show-reorder="shouldShowReorder"
@@ -52,11 +50,11 @@
             class="item-thumbnail-left">
 <h2>{{l.location.merchant_name}}</h2>
     
-    <ion-option-button class="button-info" ng-click="edit_loc({{ l.id }})">
-      Edit
+    <ion-option-button class="button-info" ng-click="edit_loc(l.id)" >
+      Fix
     </ion-option-button>
     <ion-option-button class="button-positive">
-      Delete
+      Skip
     </ion-option-button>
     <ion-delete-button class="ion-minus-circled">
     </ion-delete-button>
@@ -64,7 +62,7 @@
     </ion-reorder-button>
 
   </ion-item>
-</ion-list>
+</ion-list> -->
     
     
     
