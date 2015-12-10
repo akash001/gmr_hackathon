@@ -34,6 +34,15 @@ angular.module('starter.services', [])
 				console.error('ERR',JSON.stringify( err));
 				return [];
 			});
+		},
+		post_update : function(location){
+			// TODO - Post to server
+			console.log("post_update"+JSON.stringify(location));
+			
+		},
+		skip : function(location){
+			// TODO - Post to server
+			console.log("skip"+JSON.stringify(location));
 		}
 	};
 })

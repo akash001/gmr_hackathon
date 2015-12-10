@@ -53,7 +53,7 @@ angular.module('starter.controllers',
 
 .controller(
 		'LocationDetailCtrl',
-		function($scope, $stateParams, $ionicLoading, $compile, Locations) {
+		function($scope,$state, $stateParams, $ionicLoading, $compile, Locations) {
 			Locations.get($stateParams.id).then(function(loc){
 				$scope.location =loc;
 				var geocoder = new google.maps.Geocoder;
@@ -79,43 +79,85 @@ angular.module('starter.controllers',
 
 				map.addListener('click', function(event) {
 					myLocation.setPosition(event.latLng);
-					geocodeLatLng(geocoder, map, event.latLng,$scope.location);
-					
+					geocodeLatLng(geocoder, map, event.latLng,$scope);
 				});
 				$scope.map = map;
 			});
 
+			$scope.update_location = function(){
+				Locations.post_update($scope.location);
+				$state.go('tab.locations');
+			}
 			
+			$scope.skip_location = function(){
+				Locations.skip($scope.location);
+				$state.go('tab.locations');
+			}
 
-			function geocodeLatLng(geocoder, map, latlng,location) {
-				console.log(JSON.stringify(location));
+			function geocodeLatLng(geocoder, map, latlng,$scope) {
+				
 				 geocoder.geocode({
 					'location' : latlng
 				}, function(results, status) {
 					if (status === google.maps.GeocoderStatus.OK) {
 						if (results[0]) {
-							var address = '';
+							var street_number='';
+							var street = '';
 							var city = '';
 							var state = '';
 							var zip = '';
-							console.log(results[0].address_components);
-							
+							var lat = -1000;
+							var lng = -1000;
 							for (var i=0;i<results[0].address_components.length; i++){
 								var ac = results[0].address_components[i];
-								console.log(JSON.stringify(ac));
+//								console.log(JSON.stringify(ac));
 								if ( ac.types.indexOf('route')>=0){
-									address +=ac.short_name;
+									street =ac.short_name;
+								}
+								else if (ac.types.indexOf('street_number')>=0){
+									street_number = ac.short_name;
+								}
+								else if (ac.types.indexOf('postal_code')>=0){
+									zip = ac.short_name;
+								}
+								else if (ac.types.indexOf('administrative_area_level_1')>=0){
+									state = ac.short_name;
+								}
+								else if (ac.types.indexOf('locality')>=0) {
+									city = ac.short_name;
 								}
 							}
-							return results[0];
+							if (results[0].geometry && results[0].geometry.location){
+								lat = results[0].geometry.location.lat;
+								lng = results[0].geometry.location.lng;
+							}
+							
+							$scope.$apply(function(){
+								if (street != ''){
+										$scope.location.mrchAddr=street_number +' '+street;
+								}
+								if (city != ''){
+									$scope.location.mrchCity=city;
+								}
+								if (state != ''){
+									$scope.location.mrchState=state;
+								}
+								if (zip != ''){
+									$scope.location.mrchZip=zip;
+								}
+								if (lat > -1000){
+									$scope.location.mrchLat = lat;
+								}
+								if (lng > -1000){
+									$scope.location.mrchLong = lng;
+								}
+							});
 
 						} else {
 							console.log('No results found');
-							return null;
 						}
 					} else {
 						console.log('Geocoder failed due to: ' + status);
-						return null;
 					}
 				});
 			}
