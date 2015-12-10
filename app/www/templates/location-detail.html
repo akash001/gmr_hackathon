@@ -19,8 +19,8 @@
 					<div class="item item-divider">Transaction Details</div>
 					<div class="item item-text-wrap">
 						<h2>{{location.mrchName}}</h2>
-						<p>{{location.txn_date}}</p>
-						<p>{{location.amount | currency}}</p>
+						<p>{{location.txnDt}}</p>
+						<p>{{location.tranAmt | currency}}</p>
 						<p>
 							<a href="#" class="subdued">5 Confirmations</a>
 						</p>
@@ -30,27 +30,27 @@
 	<form name="locationform" ng-click="update_location(location)">
 		<div class="item item-input-inset">
 			<label class="item item-input"> <span class="input-label">Merchant
-					Name</span> <input type="text" ng-model="location.location.merchant_name">
+					Name</span> <input type="text" ng-model="location.mrchName">
 			</label>
 		</div>
 		<div class="item item-input-inset">
 			<label class="item item-input"> <span class="input-label">Merchant
-					Address</span> <input type="text" ng-model="location.location.street">
+					Address</span> <input type="text" ng-model="location.mrchAddr">
 			</label>
 		</div>
 		<div class="item item-input-inset">
 			<label class="item item-input"> <span class="input-label">Merchant
-					City</span> <input type="text" ng-model="location.location.city">
+					City</span> <input type="text" ng-model="location.mrchCity">
 			</label>
 		</div>
 		<div class="item item-input-inset">
 			<label class="item item-input"> <span class="input-label">Merchant
-					State</span> <input type="text" ng-model="location.location.state">
+					State</span> <input type="text" ng-model="location.mrchState">
 			</label>
 		</div>
 		<div class="item item-input-inset">
 			<label class="item item-input"> <span class="input-label">Merchant
-					Zip</span> <input type="text" ng-model="location.location.zip">
+					Zip</span> <input type="text" ng-model="location.mrchZip">
 			</label>
 		</div>
 		<span>

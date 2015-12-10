@@ -10,21 +10,30 @@ angular.module('starter.services', [])
 	return {
 		
 		all : function() {
-			return $http.get(ApiEndpoint.url+"/"+User.id()).then(function(response){
+				console.log(User.id());
+				return $http.get(ApiEndpoint.url+"/"+User.id()).then(function(response){
+						locations = response.data;
+						return locations;
+					},function(err){
+						console.error('ERR',JSON.stringify( err));
+						return [];
+					});
+		},
+		get : function(id) {
+//			for (var i = 0; i < locations.length; i++) {
+//				if (locations[i].tranId === parseInt(id)) {
+//					return locations[i];
+//				}
+//			}
+//			return null;
+			return $http.get(ApiEndpoint.url+"/"+User.id()+"/"+id).then(function(response){
 				locations = response.data;
-				return locations;
+				console.log("service"+JSON.stringify(locations[0]));
+				return locations[0];
 			},function(err){
 				console.error('ERR',JSON.stringify( err));
 				return [];
 			});
-		},
-		get : function(id) {
-			for (var i = 0; i < locations.length; i++) {
-				if (locations[i].tranId === parseInt(id)) {
-					return locations[i];
-				}
-			}
-			return null;
 		}
 	};
 })
