@@ -94,7 +94,7 @@ angular.module('starter.controllers',
 				}, function(results, status) {
 					if (status === google.maps.GeocoderStatus.OK) {
 						if (results[0]) {
-							var address = 'iiiii';
+							var address = '';
 							var city = '';
 							var state = '';
 							var zip = '';
@@ -105,7 +105,6 @@ angular.module('starter.controllers',
 								console.log(JSON.stringify(ac));
 								if ( ac.types.indexOf('route')>=0){
 									address +=ac.short_name;
-									location.mrchAddr = address;
 								}
 							}
 							return results[0];

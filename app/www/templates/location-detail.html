@@ -4,59 +4,52 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="location">
-	<ion-nav-bar class="bar bar-header bar-positive">
-	<ion-nav-back-button>
-	</ion-nav-back-button>
-	<ion-nav-title>
-	  <h1 class="title"><b>Location Correction: {{location.mrchName}}</b></h1>
-	</ion-nav-title>
-	</ion-nav-bar>
+<ion-view view-title="location"> <ion-nav-bar
+	class="bar bar-header bar-positive"> <ion-nav-back-button>
+</ion-nav-back-button> <ion-nav-title>
+<h1 class="title">
+	<b>Location Correction: {{location.mrchName}}</b>
+</h1>
+</ion-nav-title> </ion-nav-bar> <ion-content> <br />
+<div id="map" data-tap-disabled="true"></div>
+<div class="card">
+	<div class="item item-divider">Transaction Details</div>
+	<div class="item item-text-wrap">
+		<h2>{{location.mrchName}}</h2>
+		<p>{{location.txnDt}}</p>
+		<p>{{location.tranAmt | currency}}</p>
+		<p>
+			<a href="#" class="subdued">5 Confirmations</a>
+		</p>
+	</div>
+</div>
 
-	<ion-content> <br />
-	<div id="map" data-tap-disabled="true"></div>
-				<div class="card">
-					<div class="item item-divider">Transaction Details</div>
-					<div class="item item-text-wrap">
-						<h2>{{location.mrchName}}</h2>
-						<p>{{location.txnDt}}</p>
-						<p>{{location.tranAmt | currency}}</p>
-						<p>
-							<a href="#" class="subdued">5 Confirmations</a>
-						</p>
-					</div>
-				</div>
-
-	<form name="locationform" ng-click="update_location(location)">
-		<div class="item item-input-inset">
-			<label class="item item-input"> <span class="input-label">Merchant
-					Name</span> <input type="text" ng-model="location.mrchName">
-			</label>
+<div class="card">
+	<div class="item item-divider">Edit Merchant Details</div>
+	<div class="item item-text-wrap">
+		<label class="item item-input"> <span class="input-label pink">Merchant
+				Name</span> <input type="text" ng-model="location.mrchName" width="100%">
+		</label> <label class="item item-input"> <span
+			class="input-label pink">Merchant Address</span> <input type="text"
+			ng-model="location.mrchAddr">
+		</label> <label class="item item-input pink"> <span
+			class="input-label pink">Merchant City</span> <input type="text"
+			ng-model="location.mrchCity">
+		</label> <label class="item item-input pink"> <span
+			class="input-label pink">Merchant State</span> <input type="text"
+			ng-model="location.mrchState">
+		</label> <label class="item item-input pink"> <span
+			class="input-label pink">Merchant Zip</span> <input type="text"
+			ng-model="location.mrchZip">
+		</label>
+		<div class="row">
+			<div class="col col-50">
+				<button class="button button-block button-positive">Update</button>
+			</div>
+			<div class="col col-50">
+				<button class="button button-block button-clear">Skip</button>
+			</div>
 		</div>
-		<div class="item item-input-inset">
-			<label class="item item-input"> <span class="input-label">Merchant
-					Address</span> <input type="text" ng-model="location.mrchAddr">
-			</label>
-		</div>
-		<div class="item item-input-inset">
-			<label class="item item-input"> <span class="input-label">Merchant
-					City</span> <input type="text" ng-model="location.mrchCity">
-			</label>
-		</div>
-		<div class="item item-input-inset">
-			<label class="item item-input"> <span class="input-label">Merchant
-					State</span> <input type="text" ng-model="location.mrchState">
-			</label>
-		</div>
-		<div class="item item-input-inset">
-			<label class="item item-input"> <span class="input-label">Merchant
-					Zip</span> <input type="text" ng-model="location.mrchZip">
-			</label>
-		</div>
-		<span>
-			<button type="submit" class="button button-block button-positive">Update</button>
-			<button type="submit" class="button button-block button-clear">Skip</button>
-		</span>
-
-	</form>
+	</div>
+</div>
 </ion-content> </ion-view>
