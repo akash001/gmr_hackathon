@@ -21,4 +21,10 @@ angular.module('starter.filters', [])
 		return '$'+input;
 	}
 })
+
+.filter('format_date',function(){
+	return function(input){
+		return input;
+	}
+})
 ;

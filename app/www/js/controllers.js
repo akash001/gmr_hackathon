@@ -64,7 +64,7 @@ angular.module('starter.controllers',
 
 				var mapOptions = {
 					center : myLatlng,
-					zoom : 18,
+					zoom : 19,
 					mapTypeId : google.maps.MapTypeId.ROADMAP,
 					disableDoubleClickZoom : true
 				};
