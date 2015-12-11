@@ -16,7 +16,7 @@
 	<div class="item item-divider">Transaction Details</div>
 	<div class="item item-text-wrap">
 		<h2>{{location.mrchName}}</h2>
-		<p>{{location.txnDt}}</p>
+		<p>{{location.tranDt}}</p>
 		<p>{{location.tranAmt | currency}}</p>
 		<p>
 			<a href="#" class="subdued">5 Confirmations</a>
@@ -27,19 +27,19 @@
 <div class="card">
 	<div class="item item-divider">Edit Merchant Details</div>
 	<div class="item item-text-wrap">
-		<label class="item item-input"> <span class="input-label pink">Merchant
-				Name</span> <input type="text" ng-model="location.mrchName" width="100%">
+		<label class="item item-input"> <span class="input-label pink">
+			Name</span> <input type="text" ng-model="location.mrchName" width="100%">
 		</label> <label class="item item-input"> <span
-			class="input-label pink">Merchant Address</span> <input type="text"
+			class="input-label pink">Address</span> <input type="text"
 			ng-model="location.mrchAddr">
 		</label> <label class="item item-input pink"> <span
-			class="input-label pink">Merchant City</span> <input type="text"
+			class="input-label pink">City</span> <input type="text"
 			ng-model="location.mrchCity">
 		</label> <label class="item item-input pink"> <span
-			class="input-label pink">Merchant State</span> <input type="text"
+			class="input-label pink">State</span> <input type="text"
 			ng-model="location.mrchState">
 		</label> <label class="item item-input pink"> <span
-			class="input-label pink">Merchant Zip</span> <input type="text"
+			class="input-label pink">Zip</span> <input type="text"
 			ng-model="location.mrchZip">
 		</label>
 		<div class="row">

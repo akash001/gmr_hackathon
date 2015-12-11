@@ -7,12 +7,12 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.constant('ApiEndpoint', {
-  url: 'http://localhost:8100/GMRMerchantDetails/usertran/'
-})
 //.constant('ApiEndpoint', {
-//  url: 'http://107.223.209.6:8080/GMRMerchantDetails/usertran/'
+//  url: 'http://localhost:8100/GMRMerchantDetails/usertran/'
 //})
+.constant('ApiEndpoint', {
+  url: 'http://107.223.209.6:8080/GMRMerchantDetails/usertran/'
+})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

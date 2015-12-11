@@ -1,47 +1,48 @@
-<head>  
-    <link href="css/animate.css" rel="stylesheet">
+<head>
+<link href="css/animate.css" rel="stylesheet">
 </head>
 
-<ion-view>
-
-<ion-nav-bar class="bar bar-header bar-positive">
+<ion-view> <ion-nav-bar class="bar bar-header bar-positive">
 <ion-nav-title>
-  <h1 class="title"><b>Transactions</b></h1>
-</ion-nav-title>
-</ion-nav-bar>
- 
- 
-  <ion-content>
-  Tap on transaction to edit
-  <ion-refresher
-    pulling-text="Pull to refresh..."
-    	on-refresh="doRefresh()">
-  </ion-refresher>
-    <ion-list ng-controller="LocationsCtrl">
-      <ion-item class="item-icon-right" ng-repeat="l in locations" type="item-text-wrap" href="#/tab/locations/{{l.tranId}}">
-  <div class="card">
-  <ion-option-button class="button-info"
-                       ng-click="edit(item)">
-      Edit
-    </ion-option-button>
-  <div class="row">
-        	<div class="col col-20"><span class="txn_date">Transaction Date: {{l.tranDt }}</span></div>
-        	<div class="col col-30"><span class="txn_name">Merchant Name: {{l.mrchName}}</span></div>
-			<div class="col col-10"><span class="txn_curr">Amount: {{l.tranAmt | currency}}</span></div>
-        </div>
-  
-        <div class="row">
-        	<div class="col><span class="txn_merchant">
-        	  <b>Merchant Location:</b> 
-        	   <span class="txn_merch_name col col-20">{{l.mrchName}}</span>
-        	   <span class="txn_merch_address col col-20">{{l.mrchAddr}}, {{l.mrchCity}}, 
-        	   				{{l.mrchState}}. {{l.mrchZip}}.</span></div>
-        </div>
-        <p class="icon ion-edit icon-accessory" style="font-size: 1.5em"/>
-   </div>
-      </ion-item>
-    </ion-list>
-<!--     
+<h1 class="title">
+	<b>Transactions</b>
+</h1>
+</ion-nav-title> </ion-nav-bar> <ion-content> Tap on transaction to edit <ion-refresher
+	pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+</ion-refresher> <ion-list ng-controller="LocationsCtrl"> <ion-item
+	class="item-icon-right" ng-repeat="l in locations"
+	type="item-text-wrap" href="#/tab/locations/{{l.tranId}}">
+	<ion-option-button class="button-info" ng-click="edit(item)">
+	Edit </ion-option-button>
+	<div class="row">
+		<div class="col col-50">
+			<span class="txn_date">Date: {{l.tranDt }}</span>
+		</div>
+		<div class="col col-50">
+			<span class="txn_curr">Amount: {{l.tranAmt | currency}}</span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<span class="txn_name">{{l.mrchName}}</span>
+		</div>
+	</div>
+	<div class="card">
+		<div class="item item-divider">Merchant Location</div>
+		<div class="item item-text-wrap">
+			<span class="txn_merchant">
+			<h3>Name:   </h3> <span class="txn_merch_name">{{l.mrchName}}</span>
+			</span>
+			<span class="txn_merchant">
+			<h3>Address:</h3> <span class="txn_merch_addr">{{l.mrchAddr}}, {{l.mrchCity}}  {{l.mrchZip}}, {{l.mrchState}}</span>
+			</span>
+			
+		</div>
+	</div>
+	
+	<p class="icon ion-edit icon-accessory" style="font-size: 1.5em" />
+</ion-item> </ion-list> <!--     
  <ion-list ng-controller="LocationsCtrl"
           show-delete="shouldShowDelete"
           show-reorder="shouldShowReorder"
@@ -62,11 +63,4 @@
     </ion-reorder-button>
 
   </ion-item>
-</ion-list> -->
-    
-    
-    
-    
-    
-  </ion-content>
-</ion-view>
+</ion-list> --> </ion-content> </ion-view>
