@@ -10,6 +10,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 .constant('ApiEndpoint', {
   url: 'http://localhost:8100/GMRMerchantDetails/usertran/'
 })
+
+.constant('Mode', {
+  is_local: true
+})
 //.constant('ApiEndpoint', {
 //  url: 'http://107.223.209.6:8080/GMRMerchantDetails/usertran/'
 //})

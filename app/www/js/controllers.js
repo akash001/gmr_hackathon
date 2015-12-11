@@ -46,6 +46,7 @@ angular.module('starter.controllers',
 		function($scope,$state, $stateParams, $ionicLoading, $compile, Locations) {
 			Locations.get($stateParams.id).then(function(loc){
 				$scope.location =loc;
+				console.log(JSON.stringify(loc));
 				var geocoder = new google.maps.Geocoder;
 				var infowindow = new google.maps.InfoWindow;
 
