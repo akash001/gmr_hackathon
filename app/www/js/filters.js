@@ -24,7 +24,8 @@ angular.module('starter.filters', [])
 
 .filter('format_date',function(){
 	return function(input){
-		return input;
+		var d = new Date(input);
+		return d.toLocaleFormat('%d-%b-%Y');;
 	}
 })
 ;

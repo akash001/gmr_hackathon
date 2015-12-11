@@ -13,16 +13,6 @@ angular.module('starter.controllers',
 		'LoginCtrl',
 		function($scope, $ionicPopup, $state, UserAuth) {
 			$scope.data = {};
-
-			// $http.get('https://cors-test.appspot.com/test').then(function(resp)
-			// {
-			// console.log('Success 123', resp);
-			// // For JSON responses, resp.data contains the result
-			// }, function(err) {
-			// console.error('ERR', err);
-			// // err.status will contain the status code
-			// })
-
 			$scope.login = function() {
 				var u = UserAuth.authenticate($scope.data.username,
 						$scope.data.password);
