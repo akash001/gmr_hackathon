@@ -1,34 +1,49 @@
 <head>
-<link href="css/animate.css" rel="stylesheet">
+<style>
+.card
+{
+     margin-bottom: 0px;
+     margin-top: 0px;
+     padding: 7px;
+     
+}
+
+.item-complex .item-content, .item{
+    background-color: rgba(0,0,0,0);
+    border:0px;
+    padding:1px;
+}
+</style>
+
 </head>
 
-<ion-view> <ion-nav-bar class="bar bar-header bar-positive">
+<ion-view> 
+<ion-nav-bar class="bar bar-header bar-positive">
 <ion-nav-title>
 <h1 class="title">
 	<b>Transactions</b>
 </h1>
-</ion-nav-title> </ion-nav-bar> <ion-content> 
+</ion-nav-title> 
+</ion-nav-bar> 
 
-<div class="info">
-Tap on transaction to edit 
-</div>
-
-<div class="info_thanks" ng-show="showThanks">
-	Thank You! You just earned 10 WoW points.
-</div>
+<ion-content class="padding" style="background: url(img/login.jpg) center; background-size: cover;" class="animate-fade-slide-in">
+<ion-refresher
+	pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+</ion-refresher> 
 
 
-<ion-list ng-controller="LocationsCtrl"> <ion-item
-	class="item-icon-right" ng-repeat="l in locations"
+<!--
+<ion-list ng-controller="LocationsCtrl"> 
+<ion-item class="item-icon-right" ng-repeat="l in locations"
 	type="item-text-wrap" href="#/tab/locations/{{l.tranId}}">
-	<ion-option-button class="button-info" ng-click="edit(item)">
-	Edit </ion-option-button>
+	<ion-option-button class="button-info" ng-click="edit(item)">Edit </ion-option-button>
+	
 	<div class="row">
 		<div class="col col-50">
-			<span class="txn_date">{{l.tranDt }}</span>
+			<span class="txn_date">Date: {{l.tranDt }}</span>
 		</div>
 		<div class="col col-50">
-			<span class="txn_curr">{{l.tranAmt | currency}}</span>
+			<span class="txn_curr">Amount: {{l.tranAmt | currency}}</span>
 		</div>
 	</div>
 
@@ -38,34 +53,69 @@ Tap on transaction to edit
 		</div>
 	</div>
 	<div class="card">
+		<div class="item item-divider">Merchant Location</div>
 		<div class="item item-text-wrap">
-			<b class="listLabel">Name:</b> <span class="txn_merch_name">{{l.mrchName}}</span>
-			 <span class="txn_merch_addr"><h3>Address:</h3>{{l.mrchAddr}}, {{l.mrchCity}}  {{l.mrchZip}}, {{l.mrchState}}</span>
+			<span class="txn_merchant">
+			<h3>Name:   </h3> <span class="txn_merch_name">{{l.mrchName}}</span>
+			</span>
+			<span class="txn_merchant">
+			<h3>Address:</h3> <span class="txn_merch_addr">{{l.mrchAddr}}, {{l.mrchCity}}  {{l.mrchZip}}, {{l.mrchState}}</span>
 			</span>
 			
 		</div>
 	</div>
 	
 	<p class="icon ion-edit icon-accessory" style="font-size: 1.5em" />
-</ion-item> </ion-list> <!--     
- <ion-list ng-controller="LocationsCtrl"
-          show-delete="shouldShowDelete"
-          show-reorder="shouldShowReorder"
-          can-swipe="listCanSwipe">
-  <ion-item ng-repeat="l in locations"
-            class="item-thumbnail-left">
-<h2>{{l.location.merchant_name}}</h2>
-    
-    <ion-option-button class="button-info" ng-click="edit_loc(l.id)" >
+</ion-item> </ion-list> 
+
+-->
+ <div ng-show="showThanks">Thanks</div>
+ <ion-list class="tab-loc-list" ng-controller="LocationsCtrl" show-delete="false" can-swipe="true">
+  <ion-item ng-repeat="l in locations">
+  
+  <ion-option-button class="button-info" ng-click="edit_loc({{l.tranId}})" >
       Fix
     </ion-option-button>
     <ion-option-button class="button-positive">
       Skip
     </ion-option-button>
-    <ion-delete-button class="ion-minus-circled">
-    </ion-delete-button>
-    <ion-reorder-button class="ion-navicon">
-    </ion-reorder-button>
+  
+  <div class="card stable-bg ink ink-dark item-text-wrap" style="height:100%"> 
+	On <b>{{l.tranDt }}</b> you spent <b>{{l.tranAmt | currency}}</b> at 
+	<b>{{l.mrchName}}</b> located at <b>{{l.mrchAddr}}, {{l.mrchCity}}  {{l.mrchZip}}, {{l.mrchState}}</b>
+	<div class="card-footer text-right">
+    	<br>If you think we got the merchant details wrong please swipe this card and fix it !!!
+  	</div>
+ </div>
+	<!--
+	<div class="row">
+		<div class="col col-50">
+			<span class="txn_date">Date: {{l.tranDt }}</span>
+		</div>
+		<div class="col col-50">
+			<span class="txn_curr">Amount: {{l.tranAmt | currency}}</span>
+		</div>
+	</div>
 
+	<div class="row">
+		<div class="col">
+			<span class="txn_name">{{l.mrchName}}</span>
+		</div>
+	</div>
+	
+		<div class="item item-divider">Merchant Location</div>
+		<div class="item item-text-wrap">
+			<span class="txn_merchant">
+			<h3>Name:   </h3> <span class="txn_merch_name">{{l.mrchName}}</span>
+			</span>
+			<span class="txn_merchant">
+			<h3>Address:</h3> <span class="txn_merch_addr">{{l.mrchAddr}}, {{l.mrchCity}}  {{l.mrchZip}}, {{l.mrchState}}</span>
+			</span>
+			
+		</div>  -->
+    
+    
   </ion-item>
-</ion-list> --> </ion-content> </ion-view>
+</ion-list>  
+
+</ion-content> </ion-view>

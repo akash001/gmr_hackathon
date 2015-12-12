@@ -216,9 +216,12 @@ angular.module('starter.controllers',
 	$scope.listCanSwipe = true;
 
 	$scope.edit_loc = function(id) {
-		$state.go('tab.location-detail');
-
+		var tran_id=id;
+		var partial_URL='#/tab/locations/';
+		var complete_URL=partial_URL.concat(tran_id);
+		location.href=complete_URL;
 	}
+
 
 	// $scope.remove = function(chat) {
 	// Chats.remove(chat);

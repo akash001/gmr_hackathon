@@ -1,16 +1,36 @@
-<ion-view>
+<head>
+<style>
+.card
+{
+     margin-bottom: 0px;
+     margin-top: 0px;
+     padding: 7px;
+     
+}
 
+.item-complex .item-content, .item{
+    background-color: rgba(0,0,0,0);
+    border:0px;
+    padding:1px;
+}
+</style>
+</head>
+
+<ion-view>
 <ion-nav-bar class="bar bar-header bar-positive">
 <ion-nav-title>
   <h1 class="title"><b>Settings</b></h1>
 </ion-nav-title>
 </ion-nav-bar>
 
-  <ion-content>
-    <div class="list">
-    	<ion-toggle  ng-model="settings.notifications" class="item item-icon-left">
+  <ion-content class="padding" style="background: url(img/login.jpg) center; background-size: cover;">
+    <div class="list-settings list">
+    
+    <a class="item item-icon-left item-icon-right" href="#">
+    	<ion-toggle  ng-model="settings.notifications" class="item item-icon-right" toggle-class="toggle-calm">
         	<i class="icon ion-paper-airplane"></i>Enable Notifications
     	</ion-toggle>
+    	</a>
     	
     	<a class="item item-icon-left" href="#">
 	    	<i class="icon ion-ios-color-wand"></i>

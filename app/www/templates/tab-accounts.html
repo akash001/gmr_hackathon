@@ -1,34 +1,46 @@
+<head>
+<style>
+.card
+{
+     margin-bottom: 0px;
+     margin-top: 0px;
+     padding: 7px;
+     
+}
+
+.item-complex .item-content, .item{
+    background-color: rgba(0,0,0,0);
+    border:0px;
+    padding:1px;
+}
+</style>
+</head>
+
+
+
 <ion-view>
-
-
 <ion-nav-bar class="bar bar-header bar-positive">
 <ion-nav-title>
   <h1 class="title"><b>Accounts</b></h1>
 </ion-nav-title>
 </ion-nav-bar>
 
-  <ion-content class="padding">
-  <ion-list>
-  <ion-item class="list card" ng-repeat="account in accounts" type="item-text-wrap">
-      <div class="item item-divider">{{account.card_brand}} : {{account.card_number | mask_ac_number}}</div>
-      <div class="item item-body">
-        <div>
-          <b>Name:</b>  {{account.account_holder_name}}
-        </div>
-        <div>
-          <b>Expires:</b>  {{account.card_expiry}}
-        </div>
-        <span>
-        <button class="button button-clear button-positive">
-  				Edit
-		</button>
-		<button class="button button-clear button-positive">
-  				Delete
-		</button>
-        </span>
-        </div>
-     </ion-item>
-     </ion-list>
+  <ion-content class="padding" style="background: url(img/login.jpg) center; background-size: cover;" class="animate-fade-slide-in">
+  <ion-list class="tab-acc-list">
+  <ion-item class="item-icon-right" ng-repeat="account in accounts">
+  <div class="card stable-bg ink ink-dark item-text-wrap" style="height:100%">
+      <b>{{account.card_brand}} : {{account.card_number | mask_ac_number}}</b>
+      
+          <br><b>Name:</b>  {{account.account_holder_name}}
+          <br><b>Expires:</b>  {{account.card_expiry}}
+          <span style="float:right;"> 
+        <button class="button button-clear button-positive">Edit</button>
+		<button class="button button-clear button-assertive">Delete</button></span>
+        <br>
+   </div>
+   </ion-list>
+	</ion-item>
+	<br>
      <button class="button button-small button-assertive">
   		Add New Account
 	</button>
