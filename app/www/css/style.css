@@ -14,13 +14,17 @@
 	font-family:Arial;
 	font-size:0.8em;
 	align:right;
-	
 }
 
 .txn_merch_name{
 	color:red;
 }
-
+.info_thanks {
+	border: 5px solid #fba64e;
+	width:100%;
+	text-align:center;
+	font-size: 10px;
+}
 .txn_merchant{
 	font:Verdana;
 }
@@ -35,3 +39,71 @@
 .pink{
 	color:#4352da;
 }
+<<<<<<< HEAD
+.info {
+	text-align :center;
+	color:yellow;
+	width:100%;
+}
+=======
+
+
+/* Login
+==================================*/
+.app-icon {
+    background-color: #fff;
+    background: url('../img/gmr.png') center;
+    background-size: cover;
+    border-radius: 50%;
+    height: 125px;
+    margin: 0 auto;
+    width: 125px;
+}
+
+h1 {
+    color: #fff;
+    text-shadow: 0 1px 0px #000;
+    font-size: 42px;
+}
+
+/*slider =============================*/
+.container {
+ padding: 20px;
+}
+
+ion-slide {
+ padding-right: 5px;
+ padding-left: 5px;
+}
+ion-slide:first-child {
+ padding-left: 0;
+}
+ion-slide:last-child {
+ padding-right: 0;
+}
+ion-slide:nth-child(3) {
+ z-index: 1; 
+}
+
+h2 {
+    color: #fff;
+    text-shadow: 0 1px 0px #000;
+    font-size: 25px;
+}
+
+/*slider images*/
+.my-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.my-container img {
+    left: 0;
+    top: 0;
+    width: 350px;
+    height: 275px;
+    opacity: 0.8;
+}
+
+
+>>>>>>> origin/master

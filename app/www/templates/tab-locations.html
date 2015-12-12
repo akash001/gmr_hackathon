@@ -7,9 +7,18 @@
 <h1 class="title">
 	<b>Transactions</b>
 </h1>
-</ion-nav-title> </ion-nav-bar> <ion-content> Tap on transaction to edit <ion-refresher
-	pulling-text="Pull to refresh..." on-refresh="doRefresh()">
-</ion-refresher> <ion-list ng-controller="LocationsCtrl"> <ion-item
+</ion-nav-title> </ion-nav-bar> <ion-content> 
+
+<div class="info">
+Tap on transaction to edit 
+</div>
+
+<div class="info_thanks" ng-show="showThanks">
+	Thank You! You just earned 10 WoW points.  
+</div>
+
+
+<ion-list ng-controller="LocationsCtrl"> <ion-item
 	class="item-icon-right" ng-repeat="l in locations"
 	type="item-text-wrap" href="#/tab/locations/{{l.tranId}}">
 	<ion-option-button class="button-info" ng-click="edit(item)">

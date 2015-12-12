@@ -17,13 +17,10 @@ angular.module('starter.services', [])
 })
 
 .factory('Locations', function($http,$q,Accounts,User,ApiEndpoint,Mode) {
-	// Might use a resource here that returns a JSON array
-
-	// Some fake testing data
 	
 	// Some fake testing data
 	var locations_fake = [ 	 
-	                  	 {"tranId":10001,"accountId":1,"locnId":0,"mrchName":"HomeDepot","tranDt":"2015-11-01","tranAmt":100.15,"mrchAddr":"4903 GreatAmerica Mall Dr","mrchCity":"Milpitas","mrchState":"CA","mrchZip":"95035","mrchCtry":"US","mrchLat":37.415534,"mrchLong":-121.903354},
+	                  	 {"tranId":10001,"accountId":1,"locnId":0,"mrchName":"HomeDepot","tranDt":"2015-11-01","tranAmt":100.15,"mrchAddr":"4903 GreatAmerica Mall Dr","mrchCity":"Milpitas","mrchState":"CA","mrchZip":"95035","mrchCtry":"US","mrchLat":37.415534,"mrchLong":-121.903354,"feedbackFlag":"Y"},
 		                 {"tranId":10002,"accountId":1,"locnId":0,"mrchName":"Kohls","tranDt":"2015-11-01","tranAmt":100.15,"mrchAddr":"4903 GreatAmerica Mall Dr","mrchCity":"Milpitas","mrchState":"CA","mrchZip":"95035","mrchCtry":"US","mrchLat":37.4168815,"mrchLong":-121.9013705},
 		                 {"tranId":10003,"accountId":1,"locnId":0,"mrchName":"FOREVER21","tranDt":"2015-11-01","tranAmt":100.15,"mrchAddr":"4903 GreatAmerica Mall Dr","mrchCity":"Milpitas","mrchState":"CA","mrchZip":"95035","mrchCtry":"US","mrchLat":37.4169686,"mrchLong":-121.9000421},
 		                 {"tranId":10004,"accountId":1,"locnId":0,"mrchName":"STARBUCKS","tranDt":"2015-11-01","tranAmt":100.15,"mrchAddr":"4903 GreatAmerica Mall Dr","mrchCity":"Milpitas","mrchState":"CA","mrchZip":"95035","mrchCtry":"US","mrchLat":37.4337416,"mrchLong":-121.9162546},
@@ -31,7 +28,7 @@ angular.module('starter.services', [])
 		            ];
 	var locations = [];
 	var doneTranIds = [];
-
+	
 	return {
 		
 		all : function() {
@@ -39,12 +36,12 @@ angular.module('starter.services', [])
 				var deferred = $q.defer();
 				deferred.resolve(locations_fake);
 				return deferred.promise;
-				
 			}
 			else {
 				return $http.get(ApiEndpoint.url+"/"+User.id()).then(function(response){
 						locations = response.data;
-						return locations;
+						console.log(JSON.stringify(locations));
+						return locations_fake;
 					},function(err){
 						console.error('ERR',JSON.stringify( err));
 						return [];
@@ -74,56 +71,51 @@ angular.module('starter.services', [])
 			});
 			}
 		},
+		update_local : function(location){
+			location_fake = null;
+			for (var i = 0; i < locations_fake.length; i++) {
+				if (locations_fake[i].tranId === location.tranId) {
+					location_fake=locations_fake[i];
+					break;
+				}
+			}
+			location_fake.feedbackFlag = location.feedbackFlag;
+			location_fake.mrchName = location.mrchName;
+			console.log(JSON.stringify(locations_fake));
+		},
 		post_update : function(location){
 			// TODO - Post to server
+			User.increment_wow(10);
+			location['feedbackFlag']='Y';
 			console.log("post_update"+JSON.stringify(location));
-			location['type']='update';
-			if (!Mode.is_local){
-			$http.post(ApiEndpoint.url+"/"+User.id()+"/"+location.tranId).then(function (res){
-	            console.log(JSON.stringify(res.data));
-	            
+			if (Mode.is_local){
+				this.update_local(location);
+				var deferred = $q.defer();
+				deferred.resolve('{}');
+				return deferred.promise;
+			}
+			else 
+			{
+				return $http.post(ApiEndpoint.url+"/"+User.id()+"/"+location.tranId).then(function (res){
+					console.log(JSON.stringify(res.data));
 	        });
 		}
 		},
 		skip : function(location){
-			// TODO - Post to server
+			location['feedbackFlag']='S';
 			console.log("skip"+JSON.stringify(location));
-		}
-	};
-})
-
-.factory('LocationsFake', function($http,Accounts,User,ApiEndpoint) {
-	// Might use a resource here that returns a JSON array
-
-	// Some fake testing data
-	var locations = [ 	 
-	                  	 {"tranId":10001,"accountId":1,"locnId":0,"mrchName":"HomeDepot","tranDt":"2015-11-01","tranAmt":100.15,"mrchAddr":"4903 GreatAmerica Mall Dr","mrchCity":"Milpitas","mrchState":"CA","mrchZip":"95035","mrchCtry":"US","mrchLat":37.415534,"mrchLong":-121.903354},
-		                 {"tranId":10002,"accountId":1,"locnId":0,"mrchName":"Kohls","tranDt":"2015-11-01","tranAmt":100.15,"mrchAddr":"4903 GreatAmerica Mall Dr","mrchCity":"Milpitas","mrchState":"CA","mrchZip":"95035","mrchCtry":"US","mrchLat":37.4168815,"mrchLong":-121.9013705},
-		                 {"tranId":10003,"accountId":1,"locnId":0,"mrchName":"FOREVER21","tranDt":"2015-11-01","tranAmt":100.15,"mrchAddr":"4903 GreatAmerica Mall Dr","mrchCity":"Milpitas","mrchState":"CA","mrchZip":"95035","mrchCtry":"US","mrchLat":37.4169686,"mrchLong":-121.9000421},
-		                 {"tranId":10004,"accountId":1,"locnId":0,"mrchName":"STARBUCKS","tranDt":"2015-11-01","tranAmt":100.15,"mrchAddr":"4903 GreatAmerica Mall Dr","mrchCity":"Milpitas","mrchState":"CA","mrchZip":"95035","mrchCtry":"US","mrchLat":37.4337416,"mrchLong":-121.9162546},
-		                 {"tranId":10006,"accountId":1,"locnId":0,"mrchName":"SportsAuthority","tranDt":"2015-11-01","tranAmt":100.15,"mrchAddr":"125 E El Camino Real","mrchCity":"Sunnyvale","mrchState":"CA","mrchZip":"94086","mrchCtry":"US","mrchLat":37.3669749,"mrchLong":-122.0308847}
-		            ];
-	var doneTranIds = [];
-
-	return {
-		
-		all : function() {
-				return locations;
-		},
-		get : function(id) {
-			for (var i = 0; i < locations.length; i++) {
-				if (locations[i].tranId === parseInt(id)) {
-					return locations[i];
-				}
+			if (Mode.is_local){
+				this.update_local(location);
+				var deferred = $q.defer();
+				deferred.resolve('{}');
+				return deferred.promise;
 			}
-			return null;
-		},
-		post_update : function(location){
-			location['type']='update';
-			console.log("post_update"+JSON.stringify(location));
-		},
-		skip : function(location){
-			console.log("skip"+JSON.stringify(location));
+			else 
+			{
+				return $http.post(ApiEndpoint.url+"/"+User.id()+"/"+location.tranId).then(function (res){
+					console.log(JSON.stringify(res.data));
+	        });
+		}
 		}
 	};
 })
@@ -238,10 +230,11 @@ angular.module('starter.services', [])
 			}
 		},
 		
-		increment_wow(num){
+		increment_wow: function(num){
 			var u = UserAuth.get();
 			if (u != null){
-				u.settings.wow_points += num;
+				var p = u.settings.wow_points;
+				u.settings.wow_points =p+num;
 			}
 		},
 		

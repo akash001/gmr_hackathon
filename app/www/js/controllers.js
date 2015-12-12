@@ -17,7 +17,7 @@ angular.module('starter.controllers',
 				var u = UserAuth.authenticate($scope.data.username,
 						$scope.data.password);
 				if (u != null) {
-					$state.go('tab.locations');
+					$state.go('tab.locations',{},{reload:true});
 				} else {
 					var alertPopup = $ionicPopup.alert({
 						title : 'Login failed!',
@@ -43,7 +43,7 @@ angular.module('starter.controllers',
 
 .controller(
 		'LocationDetailCtrl',
-		function($scope,$state, $stateParams, $ionicLoading, $compile, Locations) {
+		function($scope,$state, $stateParams, $ionicLoading, $compile, Locations,CrossControllerData) {
 			Locations.get($stateParams.id).then(function(loc){
 				$scope.location =loc;
 				console.log(JSON.stringify(loc));
@@ -76,13 +76,19 @@ angular.module('starter.controllers',
 			});
 
 			$scope.update_location = function(){
-				Locations.post_update($scope.location);
-				$state.go('tab.locations');
+				Locations.post_update($scope.location).then(function(){
+					CrossControllerData.set('wow_pts_earned',10);
+					$state.go('tab.locations',{},{reload:true});
+				});
+				
 			}
 			
 			$scope.skip_location = function(){
-				Locations.skip($scope.location);
-				$state.go('tab.locations');
+				Locations.skip($scope.location).then(function(){
+					CrossControllerData.set('wow_pts_earned',0);
+					$state.go('tab.locations',{},{reload:true});
+				});
+				
 			}
 
 			function geocodeLatLng(geocoder, map, latlng,$scope) {
@@ -157,7 +163,7 @@ angular.module('starter.controllers',
 			
 		})
 
-.controller('LocationsCtrl', function($scope, Locations, $state) {
+.controller('LocationsCtrl', function($scope, Locations, $state,CrossControllerData,$ionicHistory) {
 	// With the new view caching in Ionic, Controllers are only called
 	// when they are recreated or on app start, instead of every page change.
 	// To listen for when this page is active (for example, to refresh data),
@@ -165,10 +171,48 @@ angular.module('starter.controllers',
 	//
 	// $scope.$on('$ionicView.enter', function(e) {
 	// });
+	
+	$scope.$on("$ionicView.enter", function () {
+		   $ionicHistory.clearCache();
+		   $ionicHistory.clearHistory();
+		   Locations.all().then(function(locations) {
+			$scope.locations = $scope.filtered(locations);
+			$scope.showThanks = $scope.showThanksFunction();
+			
+			setTimeout(function () {
+				$scope.$apply(function(){
+					CrossControllerData.clear('wow_pts_earned');
+					$scope.showThanks=false;
+				});
+				}, 5000);
+			});
+		});
+	
+	$scope.showThanksFunction = function(){
+		var pts = parseInt(CrossControllerData.get('wow_pts_earned') | 0);
+		console.log('pts: '+pts);
+		if (pts > 0){
+			return true;
+		}
+		return false;
+	}
 
-	Locations.all().then(function(locations) {
-		$scope.locations = locations;
-	});
+	$scope.filtered = function(locs){
+		var new_locations=[];
+		
+		if (locs){
+			for (var i=0;i<locs.length;i++){
+				l = locs[i];
+				console.log(l.tranId);
+				if (!l.feedbackFlag || l.feedbackFlag == 'N'){
+					new_locations.push(l);
+				}
+			}
+		}
+		return new_locations;
+	}
+	
+	
 	$scope.listCanSwipe = true;
 
 	$scope.edit_loc = function(id) {
@@ -206,6 +250,7 @@ angular.module('starter.controllers',
 
 .controller('SettingsCtrl', function($scope, $stateParams, User) {
 	$scope.settings = User.settings();
+	console.log(JSON.stringify($scope.settings));
 
 	$scope.logoff = function() {
 		User.logoff();
