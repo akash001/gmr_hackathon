@@ -69,6 +69,7 @@
 </ion-item> </ion-list> 
 
 -->
+<font color="#1a1a1a"><center><b>If you think we got the merchant details wrong please swipe the card and fix it !!!</b></center></font>
  <div ng-show="showThanks">Thanks</div>
  <ion-list class="tab-loc-list" ng-controller="LocationsCtrl" show-delete="false" can-swipe="true">
   <ion-item ng-repeat="l in locations">
@@ -81,11 +82,8 @@
     </ion-option-button>
   
   <div class="card stable-bg ink ink-dark item-text-wrap" style="height:100%"> 
-	On <b>{{l.tranDt }}</b> you spent <b>{{l.tranAmt | currency}}</b> at 
-	<b>{{l.mrchName}}</b> located at <b>{{l.mrchAddr}}, {{l.mrchCity}}  {{l.mrchZip}}, {{l.mrchState}}</b>
-	<div class="card-footer text-right">
-    	<br>If you think we got the merchant details wrong please swipe this card and fix it !!!
-  	</div>
+	On <font color="#00061a"><b>{{l.tranDt }}</b></font> you spent <font color="#00061a"><b>{{l.tranAmt | currency}}</b></font> at 
+	<font color="#660000"><b>{{l.mrchName}}</b></font> located at <font color="#660000"><b>{{l.mrchAddr}}, {{l.mrchCity}}  {{l.mrchZip}}, {{l.mrchState}}</b></font>
  </div>
 	<!--
 	<div class="row">
