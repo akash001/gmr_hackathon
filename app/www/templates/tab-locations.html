@@ -2,7 +2,7 @@
 <style>
 .card
 {
-     margin-bottom: 0px;
+     margin-bottom: 3px;
      margin-top: 0px;
      padding: 7px;
      
@@ -12,6 +12,12 @@
     background-color: rgba(0,0,0,0);
     border:0px;
     padding:1px;
+}
+
+h3 {
+    color: #fff;
+    text-shadow: 0 1px 0px #000;
+    font-size: 20px;
 }
 </style>
 
@@ -69,8 +75,9 @@
 </ion-item> </ion-list> 
 
 -->
-<font color="#1a1a1a"><center><b>If you think we got the merchant details wrong please swipe the card and fix it !!!</b></center></font>
- <div ng-show="showThanks">Thanks</div>
+<font color="#1a1a1a" style="color: #fff; text-shadow: 0 1px 0px #000; font-size: 17px;"><center><b>If you think we got the merchant details wrong please swipe the card and fix it !!!</b></center></font>
+ <br>
+ <div ng-show="showThanks" style="color: #fff; text-shadow: 0 1px 0px #000; font-size: 25px;"><center>THANKS !!!</center></div>
  <ion-list class="tab-loc-list" ng-controller="LocationsCtrl" show-delete="false" can-swipe="true">
   <ion-item ng-repeat="l in locations">
   

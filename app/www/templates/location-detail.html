@@ -4,29 +4,40 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="location"> <ion-nav-bar
-	class="bar bar-header bar-positive"> <ion-nav-back-button>
-</ion-nav-back-button> <ion-nav-title>
-<h1 class="title">
-	<b>Location Correction: {{location.mrchName}}</b>
-</h1>
-</ion-nav-title> </ion-nav-bar> <ion-content> <br />
-<div id="map" data-tap-disabled="true"></div>
-<div class="card">
-	<div class="item item-divider">Transaction Details</div>
-	<div class="item item-text-wrap">
-		<h2>{{location.mrchName}}</h2>
-		<p>{{location.txnDt}}</p>
-		<p>{{location.tranAmt | currency}}</p>
-		<p>
-			<a href="#" class="subdued">5 Confirmations</a>
-		</p>
-	</div>
-</div>
+<head>
+<style>
+.card
+{
+     margin-bottom: 3px;
+     margin-top: 3px;
+     padding: 7px;
+     
+}
+</style>
+</head>
 
-<div class="card">
-	<div class="item item-divider">Edit Merchant Details</div>
-	<div class="item item-text-wrap">
+<ion-view> 
+<ion-nav-bar class="bar bar-header bar-positive"> 
+<ion-nav-back-button>
+</ion-nav-back-button> 
+<ion-nav-title>
+<h1 class="title">
+	<b>Transaction Correction</b>
+</h1>
+</ion-nav-title> 
+</ion-nav-bar> 
+
+<ion-content style="background: url(img/login.jpg) center; background-size: cover;" class="animate-fade-slide-in">
+
+<div class="card stable-bg ink ink-dark item-text-wrap">
+	Transaction Details:
+		<h3> <font color="Black">{{location.mrchName}}</font></h3>
+	Purchase of <font color="Black">{{location.tranAmt | currency}}</font> made on
+		<font color="Black">{{location.tranDt}}</font>.
+</div>
+<div id="map" data-tap-disabled="true" ></div>
+<div class="card stable-bg ink ink-dark item-text-wrap">
+	Edit Merchant Details:
 		<label class="item item-input"> <span class="input-label pink">
 			Name</span> <input type="text" ng-model="location.mrchName" width="100%">
 		</label> <label class="item item-input"> <span
@@ -51,5 +62,4 @@
 			</div>
 		</div>
 	</div>
-</div>
 </ion-content> </ion-view>
