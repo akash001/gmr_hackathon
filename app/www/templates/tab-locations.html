@@ -14,7 +14,7 @@ Tap on transaction to edit
 </div>
 
 <div class="info_thanks" ng-show="showThanks">
-	Thank You! You just earned 10 WoW points.  
+	Thank You! You just earned 10 WoW points.
 </div>
 
 
@@ -25,10 +25,10 @@ Tap on transaction to edit
 	Edit </ion-option-button>
 	<div class="row">
 		<div class="col col-50">
-			<span class="txn_date">Date: {{l.tranDt }}</span>
+			<span class="txn_date">{{l.tranDt }}</span>
 		</div>
 		<div class="col col-50">
-			<span class="txn_curr">Amount: {{l.tranAmt | currency}}</span>
+			<span class="txn_curr">{{l.tranAmt | currency}}</span>
 		</div>
 	</div>
 
@@ -38,13 +38,9 @@ Tap on transaction to edit
 		</div>
 	</div>
 	<div class="card">
-		<div class="item item-divider">Merchant Location</div>
 		<div class="item item-text-wrap">
-			<span class="txn_merchant">
-			<h3>Name:   </h3> <span class="txn_merch_name">{{l.mrchName}}</span>
-			</span>
-			<span class="txn_merchant">
-			<h3>Address:</h3> <span class="txn_merch_addr">{{l.mrchAddr}}, {{l.mrchCity}}  {{l.mrchZip}}, {{l.mrchState}}</span>
+			<b class="listLabel">Name:</b> <span class="txn_merch_name">{{l.mrchName}}</span>
+			 <span class="txn_merch_addr"><h3>Address:</h3>{{l.mrchAddr}}, {{l.mrchCity}}  {{l.mrchZip}}, {{l.mrchState}}</span>
 			</span>
 			
 		</div>
