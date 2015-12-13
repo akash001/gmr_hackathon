@@ -9,14 +9,15 @@
 }
 
 h4 {
-    font-size: 18px;
+    font-size: 15px;
 }
 
-.item-complex .item-content, .item{
-    background-color: rgba(0,0,0,0);
-    border:0px;
+ul
+{
+    background-color: #FFFFF;
     padding:1px;
 }
+
 </style>
 </head>
 
@@ -27,48 +28,47 @@ h4 {
 </ion-nav-title>
 </ion-nav-bar>
 
-  <ion-content class="padding" style="background: url(img/login.jpg) center; background-size: cover;">
-  <div class="card stable-bg ink ink-dark item-text-wrap">
-  <br><br>
+  <ion-content style="background: url(img/login.jpg) center; background-size: cover;">
   
-     <div class="list animate-fade-slide-in-right">
-    
-    <a class="item">
-                <ion-toggle  ng-model="settings.notifications" class="item item-icon-right" toggle-class="toggle-calm"></ion-toggle>
-    </a>
-       <h4> <font color="Black">Enable Notifications</font></h4>
-</div>
-    	<br><br>
-    
-    <h4> <font color="Black">Max. Locations Checks</font></h4>
-	    		    	
-	    	<select ng-model="settings.num_locations">
+  <ul class="list">
+
+  <li class="item item-toggle">
+     Enable Notifications
+     <label class="toggle toggle-assertive">
+       <input type="checkbox">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+  </li>
+  
+   <li class="item item-select">
+     Max. Locations Checks
+     <select ng-model="settings.num_locations">
 	            <option ng-selected="selected">5</option>
 	            <option>10</option>
 	            <option>15</option>
 	            <option>20</option>
 	        </select>
-	
-	
-		<br><br>
-	<span>
-    	<i class="icon ion-ios-color-wand"></i>
-    		<h4> <font color="Black">WoW Points</font></h4>
-    	<span class="badge badge-assertive">{{settings.wow_points}}</span>
-    </span>
-
-  	  
-  	  	<br><br>
-  	  	<span>
-    	<i class="icon ion-help-circled"></i>
-    		<h4> <font color="Black">Help</font></h4>
-    		</span>
-  	  
-  	  	<br><br>
-  	  	<span>
-    	<i class="icon ion-log-out"></i>
-    		<h4> <font color="Black">Log Off</font></h4>
-    		</span>
-	</div>
+  </li>
+  
+  <li class="item item-badge">
+     WoW Points
+  <span class="badge badge-positive">{{settings.wow_points}}</span>
+  </li>
+  
+  <li class="item item-help">
+     <a>Help</a>
+  </li>
+  
+  <li class="item item-button">
+  <div class="row">
+   <div class="col text-right">
+     <button class="button button-large button-positive">  Logout </button>
+     </div></div>
+  </li>
+  
+  </ul>
+ 
   </ion-content>
 </ion-view>
