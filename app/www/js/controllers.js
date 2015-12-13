@@ -168,7 +168,7 @@ angular.module('starter.controllers',
 			
 		})
 
-.controller('LocationsCtrl', function($scope, Locations, $state,CrossControllerData,$ionicHistory) {
+.controller('LocationsCtrl', function($scope, Locations, $state,CrossControllerData,$ionicHistory,$ionicListDelegate) {
 	// With the new view caching in Ionic, Controllers are only called
 	// when they are recreated or on app start, instead of every page change.
 	// To listen for when this page is active (for example, to refresh data),
@@ -225,6 +225,7 @@ angular.module('starter.controllers',
 		var partial_URL='#/tab/locations/';
 		var complete_URL=partial_URL.concat(tran_id);
 		location.href=complete_URL;
+		$ionicListDelegate.closeOptionButtons();
 	}
 
 
