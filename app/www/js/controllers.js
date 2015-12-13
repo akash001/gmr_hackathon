@@ -43,9 +43,14 @@ angular.module('starter.controllers',
 
 .controller(
 		'LocationDetailCtrl',
-		function($scope,$state, $stateParams, $ionicLoading, $compile, Locations,CrossControllerData) {
+		function($scope,$state, $stateParams, $ionicLoading, $compile, Locations,CrossControllerData,Categories) {
 			Locations.get($stateParams.id).then(function(loc){
 				$scope.location =loc;
+				$scope.categories=Categories.all();
+//				$scope.default_job_value = loc.mcc;
+				console.log('mcc:  '+loc.mcc);
+				$scope.selected=Categories.get(loc.mcc);
+				console.log("xxx"+$scope.selected);
 				console.log(JSON.stringify(loc));
 				var geocoder = new google.maps.Geocoder;
 				var infowindow = new google.maps.InfoWindow;
