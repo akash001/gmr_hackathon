@@ -13,6 +13,10 @@
      padding: 7px;
      
 }
+
+item-select .list {
+  margin: 1px 0; }
+
 </style>
 </head>
 
@@ -27,7 +31,7 @@
 </ion-nav-title> 
 </ion-nav-bar> 
 
-<ion-content style="background: url(img/login.jpg) center; background-size: cover;" class="animate-fade-slide-in">
+<ion-content style="background: url(img/login.jpg) center; background-size: cover;" class="animate-fade-slide-in" overflow-scroll="false" >
 
 <div class="card stable-bg ink ink-dark item-text-wrap">
 	Transaction Details:
@@ -40,7 +44,15 @@
 	Edit Merchant Details:
 		<label class="item item-input"> <span class="input-label pink">
 			Name</span> <input type="text" ng-model="location.mrchName" width="100%">
-		</label> <label class="item item-input"> <span
+		</label>
+		
+		<label class="item item-input item-select">
+          <div class="input-label pink">
+            Category</div>
+			<select ng-options="item as item.name for item in categories track by item.id" ng-model="selected"></select>
+        </label>
+        		
+		 <label class="item item-input"> <span
 			class="input-label pink">Address</span> <input type="text"
 			ng-model="location.mrchAddr">
 		</label> <label class="item item-input pink"> <span

@@ -8,6 +8,10 @@
      
 }
 
+h4 {
+    font-size: 18px;
+}
+
 .item-complex .item-content, .item{
     background-color: rgba(0,0,0,0);
     border:0px;
@@ -24,43 +28,47 @@
 </ion-nav-bar>
 
   <ion-content class="padding" style="background: url(img/login.jpg) center; background-size: cover;">
-    <div class="list-settings list">
+  <div class="card stable-bg ink ink-dark item-text-wrap">
+  <br><br>
+  
+     <div class="list animate-fade-slide-in-right">
     
-    <a class="item item-icon-left item-icon-right" href="#">
-    	<ion-toggle  ng-model="settings.notifications" class="item item-icon-right" toggle-class="toggle-calm">
-        	<i class="icon ion-paper-airplane"></i>Enable Notifications
-    	</ion-toggle>
-    	</a>
-    	
-    	<a class="item item-icon-left" href="#">
-	    	<i class="icon ion-ios-color-wand"></i>
-	    	Max. Locations Checks
-	    	<span class="badge"><select ng-model="settings.num_locations" class="right">
+    <a class="item">
+                <ion-toggle  ng-model="settings.notifications" class="item item-icon-right" toggle-class="toggle-calm"></ion-toggle>
+    </a>
+       <h4> <font color="Black">Enable Notifications</font></h4>
+</div>
+    	<br><br>
+    
+    <h4> <font color="Black">Max. Locations Checks</font></h4>
+	    		    	
+	    	<select ng-model="settings.num_locations">
 	            <option ng-selected="selected">5</option>
 	            <option>10</option>
 	            <option>15</option>
 	            <option>20</option>
 	        </select>
-	        </span>
-        </a>
-
-	  <a class="item item-icon-left" href="#">
+	
+	
+		<br><br>
+	<span>
     	<i class="icon ion-ios-color-wand"></i>
-    		WoW Points
+    		<h4> <font color="Black">WoW Points</font></h4>
     	<span class="badge badge-assertive">{{settings.wow_points}}</span>
-  	  </a>
+    </span>
+
   	  
-  	  
-  	  <a class="item item-icon-left" href="#">
+  	  	<br><br>
+  	  	<span>
     	<i class="icon ion-help-circled"></i>
-    		Help
-  	  </a>
+    		<h4> <font color="Black">Help</font></h4>
+    		</span>
   	  
-  	  
-  	  <a class="item item-icon-left" href="#" ng-click="logoff()">
+  	  	<br><br>
+  	  	<span>
     	<i class="icon ion-log-out"></i>
-    		Log Off
-  	  </a>
+    		<h4> <font color="Black">Log Off</font></h4>
+    		</span>
 	</div>
   </ion-content>
 </ion-view>
