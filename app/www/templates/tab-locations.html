@@ -1,5 +1,6 @@
 <head>
 <style>
+<!--
 .card
 {
      margin-bottom: 3px;
@@ -13,7 +14,7 @@
     border:0px;
     padding:1px;
 }
-
+-->
 h3 {
     color: #fff;
     text-shadow: 0 1px 0px #000;
@@ -80,7 +81,7 @@ h3 {
  <div ng-show="showThanks"><center><font color="White" size="10"><br>THANKS !!!</font></center>
  <center><font color="White" size="6"><br>+10 WOW Points !!!</font><br></center></div>
  
- <ion-list class="tab-loc-list" ng-controller="LocationsCtrl" show-delete="false" can-swipe="true">
+ <ion-list class="tab-loc-list" ng-controller="LocationsCtrl" show-delete="false" can-swipe="true" style="background-color: rgba(0,0,0,0); border:0px; padding:1px;">
   <ion-item ng-repeat="l in locations">
   
   <ion-option-button class="button-info" ng-click="edit_loc({{l.tranId}})" >
@@ -90,7 +91,7 @@ h3 {
       Skip
     </ion-option-button>
   
-  <div class="card stable-bg ink ink-dark item-text-wrap" style="height:100%"> 
+  <div class="card stable-bg ink ink-dark item-text-wrap" style="height:100%" style="margin-bottom: 3px; margin-top: 0px; padding: 7px;"> 
 	On <font color="#00061a"><b>{{l.tranDt }}</b></font> you spent <font color="#00061a"><b>{{l.tranAmt | currency}}</b></font> at 
 	<font color="#660000"><b>{{l.mrchName}}</b></font> located at <font color="#660000"><b>{{l.mrchAddr}}, {{l.mrchCity}}  {{l.mrchZip}}, {{l.mrchState}}</b></font>
  </div>

@@ -1,3 +1,4 @@
+<!-- 
 <head>
 <style>
 .card
@@ -15,7 +16,7 @@
 }
 </style>
 </head>
-
+ -->
 
 
 <ion-view>
@@ -27,8 +28,8 @@
 
   <ion-content class="padding" style="background: url(img/login.jpg) center; background-size: cover;" class="animate-fade-slide-in">
   <ion-list class="tab-acc-list">
-  <ion-item class="item-icon-right" ng-repeat="account in accounts">
-  <div class="card stable-bg ink ink-dark item-text-wrap" style="height:100%">
+  <ion-item class="item-icon-right" ng-repeat="account in accounts" style="background-color: rgba(0,0,0,0); border:0px; padding:1px;">
+  <div class="card stable-bg ink ink-dark item-text-wrap" style="height:100%" style="margin-bottom: 3px; margin-top: 0px; padding: 7px;">
       <b>{{account.card_brand}} : {{account.card_number | mask_ac_number}}</b>
       
           <br><b>Name:</b>  {{account.account_holder_name}}
