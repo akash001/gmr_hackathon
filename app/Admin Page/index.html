@@ -7,34 +7,49 @@
   <script src="js/angular.min.js"></script>
   <script src="js/app.js"></script>  
   <script type="text/javascript" src="js/controllers.js"></script>
+  <link rel="shortcut icon" href="img/favicon.png" type="image/png">
 </head>
-<body ng-app="webAdminGMRMerchant">
+<body ng-app="webAdminGMRMerchant" class="bodyclass">
+<IMG SRC="img/favicon.png" width='7%' >
+  <br/>
+<div class="welcome">
+  <label>Welcome: Administrator</label>
+</div>
+<br/><br/>
 <div>
-  <div id="ctrl-as-exmpl" ng-controller="mlidleverCntrl as mlidtoplevel">    
-    <label>Welcome: Administrator</label>
+  <div id="ctrl-as-exmpl" ng-controller="mlidleverCntrl as mlidtoplevel">
+    <div class="header1">
+      <label class="locationlabel">Location ID</label>
+    </div>
+    <div class="header2">
+      <label class="name">Merchant Name</label>
+    </div>
+    <div class="header3">
+      <label class="address">Merchant Location</label>
+    </div>
     <br/><br/>
-    <label class="locationlabel">LocationID</label>
-    <label class="name">Name</label>
-    <label class="address">Address</label>
-    <br/><br/>
-    <li ng-repeat="mlid in mlids">
+    <li ng-repeat="mlid in mlids" ng-if="mlid.userFeedbacks.length > 0">
       <div>
-        <label class="location">{{ mlid.locnId }}</label>
-        <label class="name">{{ mlid.mrchNm }}</label>
-        <label class="address">{{ mlid.mrchAddr }}, {{ mlid.mrchCity }}, {{ mlid.mrchCity }}, {{ mlid.mrchState }}. {{ mlid.mrchZip }}, {{mlid.mrchCtry}}</label>
-        <button ng-click="toggle = !toggle">Expand this Merchant Location!</button>
-      </div>     
-      <div ng-show="toggle">
+        <label class="header1">{{ mlid.locnId }}</label>
+        <label class="header2">{{ mlid.mrchName }}</label>
+        <label class="header23">{{ mlid.mrchAddress }}, {{ mlid.mrchCity }}, {{ mlid.mrchCity }}, {{ mlid.mrchState }}. {{ mlid.mrchZip }}, {{mlid.mrchCtry}}</label>
+        <button class="header4" ng-click="slideToggle=! slideToggle">Expand Merchant Location!</button>
+      </div>
+      <br/>
+      <div ng-show="slideToggle" class="slide-toggle">
         <ul ng-repeat="userFeedback in mlid.userFeedbacks">
           <label class="blank"></label>
-          <label class="name">{{userFeedback.mrchName}}</label>
-          <label class="address">{{userFeedback.mrchAddr}}, {{ userFeedback.mrchCity }}, {{ userFeedback.mrchCity }}, {{ userFeedback.mrchState }}. {{ userFeedback.mrchZip }}, {{userFeedback.mrchCtry}}</label>
-          <label class="points">Points : {{userFeedback.noOfVotes}}</label>
-          <button ng-click="push_click(mlid.locnId)">Push To GMR</button>
+          <label class="header11">{{userFeedback.mrchName}}</label>
+          <label class="header12">{{userFeedback.mrchAddress}}, {{ userFeedback.mrchCity }}, {{ userFeedback.mrchCity }}, {{ userFeedback.mrchState }}. {{ userFeedback.mrchZip }}, {{userFeedback.mrchCtry}}</label>
+          <label class="header13">Votes : {{userFeedback.totVotes}}</label>
+          <button class="header14" ng-click="push_click(mlid.locnId)">Push To GMR</button>
         </ul>
-      </div>
+      </div>      
     </li>
-  </div>
+    <div>
+      <button class="buttonbig" ng-click="push_click(mlid.locnId)">Push all above 90 percentile votes with minimum total votes 10.</button>
+    </div>
+  </div>  
 </div>
 </body>
 </html>
